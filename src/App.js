@@ -14,6 +14,18 @@ function App() {
     return data;
   };
 
+  const successCall = position => {
+    console.log(position);
+  }
+
+  const errorCall = error => {
+    console.log(error);
+  }
+
+  const getUserLocation = () => {
+    navigator.geolocation.watchPosition(successCall, errorCall)
+  }
+
   useEffect(() => {
     const getWeather = async () => {
       const dayWeather = await fetchWeather();
@@ -26,6 +38,7 @@ function App() {
       setWeather(groupedData);
     };
     getWeather();
+    getUserLocation();
   }, []);
 
   return (
